@@ -3,10 +3,12 @@ client = redis.createClient(),
 express = require("express"),
 app = express();
 
+
+var port = process.env.PORT || 8080;
+
 client.on("error", function(error){
     console.log("Error" + error);
 });
-
 
 app.get("/", function(req, res){
    client.get("user:username1", function(error, result){
@@ -23,6 +25,6 @@ app.get("/", function(req, res){
    });
 });
 
-app.listen("3000", function(){
-    console.log("listening on port 3000");
+app.listen(port, function(){
+    console.log('Our app is running on http://localhost:' + port);
 });
