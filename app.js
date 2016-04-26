@@ -12,10 +12,11 @@ client.on("error", function(error){
     console.log("Error" + error);
 });
 
-app.use(express.static(__dirname + '/views'));
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/views/index.html'));
+    res.render("index");
 });
 
 app.get("/redis", function(req, res){

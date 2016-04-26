@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "Project to test Node client for Redis",
   "main": "app.js",
-  "engines" :{
-    "node" : "^5.9.0"
+  "engines": {
+    "node": "^5.9.0"
   },
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
+    "ejs": "^2.4.1",
     "express": "^4.13.4",
     "redis": "^2.6.0-1"
   },
