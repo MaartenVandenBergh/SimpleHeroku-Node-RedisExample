@@ -1,5 +1,5 @@
 var redis = require("redis"),
-client = redis.createClient(),
+client = redis.createClient(process.env.REDIS_URL),
 express = require("express"),
 app = express();
 
