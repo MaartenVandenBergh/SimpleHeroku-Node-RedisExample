@@ -14,9 +14,11 @@ app.get("/", function(req, res){
            var nmscData = "{'nmsc':'aeaeae'}";
            client.set("username", nmscData, redis.print);
            res.send(nmscData);
+           console.log("responded to get on /");
        }
        else{
            res.send(result);
+           console.log("responded to get on /");
        }
    });
 });
@@ -24,6 +26,3 @@ app.get("/", function(req, res){
 app.listen("3000", function(){
     console.log("listening on port 3000");
 });
-
-
-
