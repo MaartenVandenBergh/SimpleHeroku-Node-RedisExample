@@ -1,5 +1,6 @@
 var redis = require("redis"),
-client = redis.createClient(process.env.REDIS_URL),
+redis_url = process.env.REDIS_URL || '',
+client = redis.createClient(redis_url),
 express = require("express"),
 app = express(),
 path = require("path");
@@ -19,18 +20,18 @@ app.get('/', function(req, res) {
     res.render("index");
 });
 
-app.get("/redis", function(req, res){
+app.get("/nmsc", function(req, res){
+   var doneMessage = "responded to get on /nmsc";
    client.get("user:username1", function(error, result){
-       if(!result){
-           var nmscData = "{'nmsc':'aeaeae'}";
+       var nmscData = result;
+       if(!nmscData){
+           nmscData = "{'nmsc':'aeaeae'}";
            client.set("user:username1", nmscData);
            res.send(nmscData);
-           console.log("responded to get on /");
        }
-       else{
-           res.send(result);
-           console.log("responded to get on /");
-       }
+
+       res.send(nmscData);
+       console.log(doneMessage);
    });
 });
 
