@@ -43,6 +43,13 @@ app.get("/nmsc", function(req, res){
        console.log(doneMessage + response.source);
    });
 });
+app.get("/nmsc/delete", function(req, res){
+   var doneMessage = "reponded to get on /nmsc/delete. Nmscdata has been deleted from Redis.";
+   client.del("user:username1", function(error, result){
+      res.send("Nmsc deleted from Redis") ;
+      console.log(doneMessage);
+   });
+});
 
 app.listen(port, function(){
     console.log('Our app is running on http://localhost:' + port);
