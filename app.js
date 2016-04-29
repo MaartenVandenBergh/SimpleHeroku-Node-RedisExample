@@ -1,13 +1,10 @@
 var redis = require("redis"),
 redis_url = process.env.REDIS_URL || '',
 client = redis.createClient(redis_url),
+port = process.env.PORT || 8080,
 express = require("express"),
 app = express(),
 path = require("path");
-
-
-
-var port = process.env.PORT || 8080;
 
 client.on("error", function(error){
     console.log("Error" + error);
