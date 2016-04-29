@@ -12,7 +12,9 @@
   "dependencies": {
     "ejs": "^2.4.1",
     "express": "^4.13.4",
-    "redis": "^2.6.0-1"
+    "redis": "^2.6.0-1",
+    "sequelize": "^3.22.0",
+    "tedious": "^1.14.0"
   },
   "devDependencies": {
     "eslint-plugin-react": "^5.0.1"

@@ -4,7 +4,9 @@ var redis = require("redis"),
     port = process.env.PORT || 8080,
     express = require("express"),
     app = express(),
-    path = require("path");
+    path = require("path"),
+    db = require("./db.js"),
+    User = require("./models/User.js");
 
 client.on("error", function(error){
     console.log("Error" + error);
@@ -16,6 +18,16 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", function(req, res) {
     res.render("index");
 });
+
+app.route("/mssql")
+.get(function(req, res){
+    User.findAll().then(function(err, result){
+        console.log("error:" + err); 
+        console.log("result:" + result); 
+    });
+    res.send("done");
+});
+
 
 app.get("/nmsc", function(req, res){
     var doneMessage = "responded to get on /nmsc from ";
