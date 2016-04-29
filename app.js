@@ -21,17 +21,26 @@ app.get('/', function(req, res) {
 });
 
 app.get("/nmsc", function(req, res){
-   var doneMessage = "responded to get on /nmsc";
+   var doneMessage = "responded to get on /nmsc from ";
    client.get("user:username1", function(error, result){
-       var nmscData = result;
-       if(!nmscData){
-           nmscData = "{'nmsc':'aeaeae'}";
-           client.set("user:username1", nmscData);
-           res.send(nmscData);
+       var response = {
+         source : "Redis" 
+       };
+        
+       var nmscData;
+       if(!result){
+           response.source = "TAAS";
+           nmscData = {
+               nmsc:'aeaeae'
+           };
+           client.set("user:username1", JSON.stringify(nmscData));
        }
-
-       res.send(nmscData);
-       console.log(doneMessage);
+       else{
+           nmscData = JSON.parse(result);
+       }
+       response.data = nmscData;
+       res.send(response);
+       console.log(doneMessage + response.source);
    });
 });
 
